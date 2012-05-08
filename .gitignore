@@ -1,0 +1,9 @@
+MobilityInformation/debug
+MobilityInformation/release
+MobilityInformation/moc
+MobilityInformation/obj
+MobilityInformation/moc*
+MobilityInformation/Makefile*
+MobilityInformation/main.o
+
+
