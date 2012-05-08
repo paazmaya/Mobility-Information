@@ -5,5 +5,10 @@ MobilityInformation/obj
 MobilityInformation/moc*
 MobilityInformation/Makefile*
 MobilityInformation/main.o
+MobilityInformation/*.pro.user
+MobilityInformation/MobilityInformation
+MobilityInformation/mobilityinformation_*_armel.*
+MobilityInformation/qmlapplicationviewer.o
+MobilityInformation/debian
 
 
