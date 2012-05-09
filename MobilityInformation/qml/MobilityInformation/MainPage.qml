@@ -75,11 +75,40 @@ Page {
                     {
                         title: qsTr("Storage Information"),
                         page: "InfoStoragePage"
+                    },
+                    {
+                        title: qsTr("Multimedia Camera"),
+                        page: "MultimediaCameraPage"
+                    },
+                    {
+                        title: qsTr("Multimedia Audio"),
+                        page: "MultimediaAudioPage"
+                    },
+                    {
+                        title: qsTr("Multimedia Video"),
+                        page: "MultimediaVideoPage"
+                    },
+                    {
+                        title: qsTr("Sensor Light"),
+                        page: "SensorLightPage"
+                    },
+                    {
+                        title: qsTr("Sensor Compass"),
+                        page: "SensorCompassPage"
+                    },
+                    {
+                        title: qsTr("Sensor Gyroscope"),
+                        page: "SensorGyroscopePage"
+                    },
+                    {
+                        title: qsTr("Sensor Accelerometer"),
+                        page: "SensorAccelerometerPage"
                     }
                 ]
 
                 Button {
                     text: modelData.title
+                    width: parent.width
                     onClicked: {
                         var comp = Qt.createComponent(modelData.page + ".qml");
                         if (comp.status == Component.Ready) {

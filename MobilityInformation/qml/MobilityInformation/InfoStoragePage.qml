@@ -60,8 +60,8 @@ Page {
                 Column {
                     property real totalSpace: 0
                     property real availSpace: 0
-                    property string storageState: ""
-                    property int driveType: 0
+                    property string storageState: "" // QSystemStorageInfo::StorageState
+                    property int driveType: 0 // QSystemStorageInfo::DriveType
                     property string driveUri: ""
 
                     width: pageContent.width
@@ -69,7 +69,7 @@ Page {
                     Component.onCompleted: {
                         totalSpace = storage.totalDiskSpace(modelData);
                         availSpace = storage.availableDiskSpace(modelData);
-                        storageState = storage.getStorageState(modelData);
+                        storageState = storage.getStorageState(modelData).toString();
                         driveType = storage.typeForDrive(modelData);
                         driveUri = storage.uriForDrive(modelData);
                     }

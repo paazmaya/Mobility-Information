@@ -69,6 +69,7 @@ Page {
                 ]
 
                 Label {
+                    width: pageContent.width
                     text: modelData
                     wrapMode: Text.WordWrap
                 }

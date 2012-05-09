@@ -22,7 +22,10 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # lines and add the respective components to the MOBILITY variable.
 CONFIG += mobility
 MOBILITY += systeminfo \
-    publishsubscribe
+    publishsubscribe \
+    multimedia \
+    sensors \
+    gallery
 
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 CONFIG += qdeclarative-boostable

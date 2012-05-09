@@ -57,13 +57,18 @@ Page {
             Repeater {
                 model: [
                     "Cell ID: " + network.cellId,
-                    ""
+                    "cellDataTechnology: " + network.cellDataTechnology,
+                    "macAddress: " + network.macAddress,
+                    "mode: " + network.mode, // QSystemNetworkInfo::NetworkModes
+                    "networkName: " + network.networkName,
+                    "networkSignalStrength: " + network.networkSignalStrength,
+                    "networkStatus: " + network.networkStatus // QSystemNetworkInfo::NetworkStatus
                 ]
-                Item {
-                    Label {
-                        text: modelData
-                        wrapMode: Text.WordWrap
-                    }
+
+                Label {
+                    width: pageContent.width
+                    text: modelData
+                    wrapMode: Text.WordWrap
                 }
             }
 

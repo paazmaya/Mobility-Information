@@ -20,6 +20,10 @@ Sheet {
             anchors.top: parent.top
             spacing: 10
 
+            Switch {
+                id: switchEnable
+            }
+
             Label {
                 id: nowPlayingText
                 text: "Now playing: " + nowPlaying.value
@@ -47,6 +51,8 @@ Sheet {
 
         }
     }
+
+    // http://doc.qt.nokia.com/qtmobility-1.2/qml-publishsubscribe.html
 
     // http://doc.qt.nokia.com/qtmobility-1.2/qml-valuespacesubscriber.html
     ValueSpaceSubscriber {
@@ -85,6 +91,7 @@ Sheet {
         property variant paths: []
 
         path: "/Applications"
+
 
         function iteratePaths() {
             var len = subPaths.length;

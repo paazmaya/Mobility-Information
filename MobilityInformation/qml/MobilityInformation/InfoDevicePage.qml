@@ -55,63 +55,70 @@ Page {
             spacing: 16
 
             Label {
-                height: 300
                 width: parent.width
-                text: "device.inputMethodType: " + device.inputMethodType + "\n" +
-                      "DeviceInfo.Mouse: " +  DeviceInfo.Mouse + ", " + (device.inputMethodType & DeviceInfo.Mouse) + "\n" +
-                      "DeviceInfo.SingleTouch: " +  DeviceInfo.SingleTouch + ", " + (device.inputMethodType & DeviceInfo.SingleTouch) + "\n" +
-                      "DeviceInfo.Keys: " +  DeviceInfo.Keys + ", " + (device.inputMethodType & DeviceInfo.Keys) + "\n" +
-                      "DeviceInfo.Keypad: " +  DeviceInfo.Keypad + ", " + (device.inputMethodType & DeviceInfo.Keypad) + "\n" +
-                      "DeviceInfo.Keyboard: " +  DeviceInfo.Keyboard + ", " + (device.inputMethodType & DeviceInfo.Keyboard) + "\n" +
-                      "DeviceInfo.MultiTouch: " +  DeviceInfo.MultiTouch + ", " + (device.inputMethodType & DeviceInfo.MultiTouch) + "\n";
-
+                text: ""
+                Component.onCompleted: {
+                    /*
+                      QSystemDeviceInfo::InputMethod
+                    QSystemDeviceInfo::Keys	0x0000001	Device has key/buttons.
+                    QSystemDeviceInfo::Keypad	0x0000002	Device has keypad (1,2,3, etc).
+                    QSystemDeviceInfo::Keyboard	0x0000004	Device has qwerty keyboard.
+                    QSystemDeviceInfo::SingleTouch	0x0000008	Device has single touch screen.
+                    QSystemDeviceInfo::MultiTouch	0x0000010	Device has multi-point touch screen.
+                    QSystemDeviceInfo::Mouse	0x0000020	Device has a mouse.
+                    */
+                    var txt = [];
+                    if (device.inputMethodType & DeviceInfo.Mouse) {
+                        txt.push("Mouse");
+                    }
+                    if (device.inputMethodType & DeviceInfo.SingleTouch) {
+                        txt.push("SingleTouch");
+                    }
+                    if (device.inputMethodType & DeviceInfo.MultiTouch) {
+                        txt.push("MultiTouch");
+                    }
+                    if (device.inputMethodType & DeviceInfo.Keys) {
+                        txt.push("Keys");
+                    }
+                    if (device.inputMethodType & DeviceInfo.Keypad) {
+                        txt.push("Keypad");
+                    }
+                    if (device.inputMethodType & DeviceInfo.Keyboard) {
+                        txt.push("Keyboard");
+                    }
+                    text = "inputMethodType: " + txt.join(", ");
+                }
                 wrapMode: Text.WordWrap
             }
 
             Repeater {
                 model: [
-                    "IMEI: " + device.imei,
-                    "IMSI" + device.imsi,
-                    "Manufacturer: " + device.manufacturer,
-                    "Model: " + device.model,
-                    "Bluetooth power state: " + device.currentBluetoothPowerState,
-                    "uniqueDeviceID: " + device.uniqueDeviceID
+                    "batteryLevel: " + device.batteryLevel,
+                    "batteryStatus: " + device.batteryStatus,
+                    "currentBluetoothPowerState: " + device.currentBluetoothPowerState,
+                    "currentPowerState: " + device.currentPowerState,
+                    "currentProfile: " + device.currentProfile,
+                    "currentThermalState: " + device.currentThermalState,
+                    "imei: " + device.imei,
+                    "imsi: " + device.imsi,
+                    "inputMethodType: " + device.inputMethodType,
+                    "isDeviceLocked: " + device.isDeviceLocked,
+                    "isKeyboardFlippedOpen: " + device.isKeyboardFlippedOpen,
+                    "isWirelessKeyboardConnected: " + device.isWirelessKeyboardConnected,
+                    "keyboardTypes: " + device.keyboardTypes,
+                    "lockStatus: " + device.lockStatus,
+                    "manufacturer: " + device.manufacturer,
+                    "messageRingtoneVolume: " + device.messageRingtoneVolume,
+                    "model: " + device.model,
+                    "primaryKeypadLightOn: " + device.primaryKeypadLightOn,
+                    "productName: " + device.productName,
+                    "secondaryKeypadLightOn: " + device.secondaryKeypadLightOn,
+                    "simStatus: " + device.simStatus,
+                    "uniqueID: " + device.uniqueID,
+                    "uniqueDeviceID: " + device.uniqueDeviceID, // undocumented
+                    "vibrationActive: " + device.vibrationActive,
+                    "voiceRingtoneVolume: " + device.voiceRingtoneVolume
                 ]
-                /*
-                batteryLevel : int
-                batteryStatus : BatteryStatus
-                currentBluetoothPowerState : bool
-                currentPowerState : PowerState
-                currentProfile : Profile
-                currentThermalState : ThermalState
-                imei : QString
-                imsi : QString
-                inputMethodType : InputMethodFlags
-                isDeviceLocked : bool
-                isKeyboardFlippedOpen : bool
-                isWirelessKeyboardConnected : bool
-                keyboardTypes : KeyboardTypeFlags
-                lockStatus : LockTypeFlags
-                manufacturer : QString
-                messageRingtoneVolume() : int
-                model : QString
-                primaryKeypadLightOn() : bool
-                productName : QString
-                secondaryKeypadLightOn() : bool
-                simStatus : SimStatus
-                uniqueID : string
-                vibrationActive() : bool
-                voiceRingtoneVolume() : int
-                */
-                /*
-                  QSystemDeviceInfo::InputMethod
-                QSystemDeviceInfo::Keys	0x0000001	Device has key/buttons.
-                QSystemDeviceInfo::Keypad	0x0000002	Device has keypad (1,2,3, etc).
-                QSystemDeviceInfo::Keyboard	0x0000004	Device has qwerty keyboard.
-                QSystemDeviceInfo::SingleTouch	0x0000008	Device has single touch screen.
-                QSystemDeviceInfo::MultiTouch	0x0000010	Device has multi-point touch screen.
-                QSystemDeviceInfo::Mouse	0x0000020	Device has a mouse.
-                */
 
                 Label {
                     width: pageContent.width
@@ -129,6 +136,10 @@ Page {
                     anchors.left: parent.left
                     width: device.batteryLevel * parent.width / 100
                     height: parent.height
+                }
+                Text {
+                    anchors.centerIn: parent
+                    text: "batteryLevel"
                 }
             }
         }
